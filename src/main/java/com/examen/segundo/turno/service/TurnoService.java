@@ -20,9 +20,15 @@ public class TurnoService {
     public Turno crearTurno(Turno turno) {
         // Obtener el ultimo numero de turno
         List<Turno> turnos = turnoRepository.findAll();
-        int ultimoTurno = turnos.get(turnos.size() - 1).getNumeroTurno();
         LocalDateTime fechaHoraCreacion = LocalDateTime.now();
         turno.setFechaHoraGeneracion(fechaHoraCreacion);
+        if(turnos.isEmpty()) {
+            turno.setNumeroTurno(1);
+            return turnoRepository.save(turno);
+        }
+        
+        int ultimoTurno = turnos.get(turnos.size() - 1).getNumeroTurno();
+        
         // Crear el turno
         turno.setNumeroTurno(ultimoTurno + 1);
         // Guardar el turno

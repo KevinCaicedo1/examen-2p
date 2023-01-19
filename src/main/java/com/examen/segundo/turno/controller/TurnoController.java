@@ -25,7 +25,7 @@ public class TurnoController {
         this.turnoService = turnoService;
     }
 
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<Object> create(@RequestBody TurnoRQ turnoRQ) {
         try {
             Turno turno = TurnoMapper.mapToTurno(turnoRQ);
